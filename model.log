@@ -1,0 +1,30 @@
+--- Job model.gms Start 12/12/20 15:14:23 32.2.0 rc62c018 DEX-DEG x86 64bit/Mac OS X
+--- Applying:
+    /Library/Frameworks/GAMS.framework/Versions/32/Resources/gmsprmun.txt
+--- GAMS Parameters defined
+    Input /Users/vadekh/Developer/GitHub/NFL-Reorganization/model.gms
+    PageSize 0
+    ScrDir /Users/vadekh/Developer/GitHub/NFL-Reorganization/225a/
+    SysDir /Library/Frameworks/GAMS.framework/Versions/32/Resources/
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+GAMS 32.2.0   Copyright (C) 1987-2020 GAMS Development. All rights reserved
+Licensee: Introduction to Optimization (CS/ISyE/ECE 524) S200826/0001AB-GEN
+          University of Wisconsin-Madison, Computer Sciences Dept.   DCE850
+          /Users/vadekh/Library/Application Support/GAMS/gamslice.txt
+          Evaluation license: Not for commercial or production use
+--- Starting compilation
+--- model.gms(5) 3 Mb
+--- call csv2gdx Coordinates.csv useHeader=y id=teams index=1
+No errors, CSV2GDX time = 3ms
+--- model.gms(6) 3 Mb
+--- GDXin=/Users/vadekh/Developer/GitHub/NFL-Reorganization/Coordinates.gdx
+--- model.gms(13) 3 Mb
+--- . distances.csv(1024) 3 Mb
+--- model.gms(15) 3 Mb
+--- Starting execution - empty program
+*** Status: Normal completion
+--- Job model.gms Stop 12/12/20 15:14:23 elapsed 0:00:00.022
