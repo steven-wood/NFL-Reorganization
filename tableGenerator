@@ -1,0 +1,47 @@
+import csv
+from math import radians, cos, sin, asin, sqrt
+
+def haversine(lon1, lat1, lon2, lat2):
+    """
+    Calculate the great circle distance between two points 
+    on the earth (specified in decimal degrees)
+    """
+    # convert decimal degrees to radians 
+    lon1, lat1, lon2, lat2 = map(radians, [lon1, lat1, lon2, lat2])
+
+    # haversine formula 
+    dlon = lon2 - lon1 
+    dlat = lat2 - lat1 
+    a = sin(dlat/2)**2 + cos(lat1) * cos(lat2) * sin(dlon/2)**2
+    c = 2 * asin(sqrt(a)) 
+    r = 3956 # Radius of earth in kilometers. Use 3956 for miles
+    return c * r
+
+class Team:
+  def __init__(self, name, lat, long):
+    self.name = name
+    self.lat = lat
+    self.long = long
+
+def main():
+    teams = []
+    with open('Coordinates.csv') as csv_file:
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        line_count = 0
+        for row in csv_reader:
+            if line_count == 0:
+                line_count += 1
+            else:
+                newTeam = Team(row[0], float(row[2]), float(row[3]))
+                teams.append(newTeam)
+                line_count += 1
+
+    with open('distances.csv', mode='w') as employee_file:
+        team_writer = csv.writer(employee_file, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        for x in teams:
+            for y in teams:
+                team_writer.writerow([x.name, y.name, str(haversine(x.long, x.lat, y.long, y.lat))])
+if __name__ == "__main__":
+    main()
+
+
