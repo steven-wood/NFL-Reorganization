@@ -1,4 +1,4 @@
---- Job model.gms Start 12/12/20 15:09:53 32.2.0 rc62c018 DEX-DEG x86 64bit/Mac OS X
+--- Job model.gms Start 12/12/20 17:43:14 32.2.0 rc62c018 DEX-DEG x86 64bit/Mac OS X
 --- Applying:
     /Library/Frameworks/GAMS.framework/Versions/32/Resources/gmsprmun.txt
 --- GAMS Parameters defined
@@ -20,12 +20,45 @@ Licensee: Introduction to Optimization (CS/ISyE/ECE 524) S200826/0001AB-GEN
 --- model.gms(5) 3 Mb
 --- call csv2gdx Coordinates.csv useHeader=y id=teams index=1
 No errors, CSV2GDX time = 3ms
---- model.gms(9) 3 Mb
+--- model.gms(6) 3 Mb
 --- GDXin=/Users/vadekh/Developer/GitHub/NFL-Reorganization/Coordinates.gdx
---- model.gms(20) 3 Mb
+--- model.gms(13) 3 Mb
 --- . distances.csv(1024) 3 Mb
---- model.gms(24) 3 Mb
---- Starting execution: elapsed 0:00:00.021
---- model.gms(1048) 4 Mb
+--- model.gms(47) 3 Mb
+--- Starting execution: elapsed 0:00:00.030
+--- Generating MIP model NflReorg
+--- model.gms(1067) 4 Mb
+---   41 rows  265 columns  521 non-zeroes
+---   256 discrete-columns
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.041
+IBM ILOG CPLEX   32.2.0 rc62c018 Released Aug 26, 2020 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex Link licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+Reading data...
+Starting Cplex...
+Space for names approximately 0.01 Mb
+Use option 'names no' to turn use of names off
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_WorkDir                                 "/Users/vadekh/Developer/GitHub/NFL-Reorganization/225a/"
+Found incumbent of value 0.000000 after 0.00 sec. (0.02 ticks)
+Dual infeasible due to empty column 'divTotalDist(AFC.NORTH)'.
+Presolve time = 0.00 sec. (0.03 ticks)
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (0.05 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (0.05 ticks)
+MIP status(118): integer unbounded
+Cplex Time: 0.00sec (det. 0.05 ticks)
+Problem is unbounded.
+--- Reading solution for model NflReorg
+--- Executing after solve: elapsed 0:00:00.116
+--- model.gms(1071) 4 Mb
 *** Status: Normal completion
---- Job model.gms Stop 12/12/20 15:09:53 elapsed 0:00:00.022
+--- Job model.gms Stop 12/12/20 17:43:14 elapsed 0:00:00.117

@@ -1,2 +1,18 @@
 B 3 C o m p i l a t i o n
-B 1043 Include File Summary
+B 1076 Include File Summary
+B 1090 Equation Listing    SOLVE NflReorg Using MIP From line 1068
+D 1093 assignOne
+D 1104 balanceDivisions
+D 1115 defObj
+B 1121 Column Listing      SOLVE NflReorg Using MIP From line 1068
+E 1124 x
+E 1143 totalDist
+B 1151 Model Statistics    SOLVE NflReorg Using MIP From line 1068
+B 1164 Solution Report     SOLVE NflReorg Using MIP From line 1068
+F 1201 assignOne
+F 1238 balanceDivisions
+F 1253 defObj
+G 1255 x
+G 1518 totalDist
+B 1526 E x e c u t i o n
+I 1526 x

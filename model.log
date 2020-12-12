@@ -1,4 +1,4 @@
---- Job model.gms Start 12/12/20 15:14:23 32.2.0 rc62c018 DEX-DEG x86 64bit/Mac OS X
+--- Job model.gms Start 12/12/20 17:43:38 32.2.0 rc62c018 DEX-DEG x86 64bit/Mac OS X
 --- Applying:
     /Library/Frameworks/GAMS.framework/Versions/32/Resources/gmsprmun.txt
 --- GAMS Parameters defined
@@ -24,7 +24,69 @@ No errors, CSV2GDX time = 3ms
 --- GDXin=/Users/vadekh/Developer/GitHub/NFL-Reorganization/Coordinates.gdx
 --- model.gms(13) 3 Mb
 --- . distances.csv(1024) 3 Mb
---- model.gms(15) 3 Mb
---- Starting execution - empty program
+--- model.gms(48) 3 Mb
+--- Starting execution: elapsed 0:00:00.027
+--- Generating MIP model NflReorg
+--- model.gms(1068) 4 Mb
+---   41 rows  257 columns  513 non-zeroes
+---   256 discrete-columns
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.034
+IBM ILOG CPLEX   32.2.0 rc62c018 Released Aug 26, 2020 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex Link licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+Reading data...
+Starting Cplex...
+Space for names approximately 0.01 Mb
+Use option 'names no' to turn use of names off
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_WorkDir                                 "/Users/vadekh/Developer/GitHub/NFL-Reorganization/225a/"
+Found incumbent of value 1.000000 after 0.00 sec. (0.02 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 1 rows and 1 columns.
+Reduced MIP has 40 rows, 256 columns, and 512 nonzeros.
+Reduced MIP has 256 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.38 ticks)
+Probing time = 0.00 sec. (0.17 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Reduced MIP has 40 rows, 256 columns, and 512 nonzeros.
+Reduced MIP has 256 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.58 ticks)
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (1.32 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (1.32 ticks)
+MIP status(101): integer optimal solution
+Cplex Time: 0.00sec (det. 1.32 ticks)
+Fixing integer variables, and solving final LP...
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_WorkDir                                 "/Users/vadekh/Developer/GitHub/NFL-Reorganization/225a/"
+Tried aggregator 1 time.
+LP Presolve eliminated 41 rows and 257 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.07 ticks)
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.10 ticks)
+Proven optimal solution.
+MIP Solution:            1.000000    (0 iterations, 0 nodes)
+Final Solve:             1.000000    (0 iterations)
+Best possible:           1.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+--- Reading solution for model NflReorg
+--- Executing after solve: elapsed 0:00:00.076
+--- model.gms(1072) 4 Mb
 *** Status: Normal completion
---- Job model.gms Stop 12/12/20 15:14:23 elapsed 0:00:00.022
+--- Job model.gms Stop 12/12/20 17:43:38 elapsed 0:00:00.076

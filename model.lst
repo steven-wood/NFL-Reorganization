@@ -1,4 +1,4 @@
-GAMS 32.2.0  rc62c018 Released Aug 26, 2020 DEX-DEG x86 64bit/Mac OS X - 12/12/20 15:14:23 Page 1
+GAMS 32.2.0  rc62c018 Released Aug 26, 2020 DEX-DEG x86 64bit/Mac OS X - 12/12/20 17:43:38 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -1038,7 +1038,40 @@ INCLUDE    /Users/vadekh/Developer/GitHub/NFL-Reorganization/distances.csv
 1036  Lions,Bengals,236.86449547341314
 1037  Lions,Lions,0.0
 1039  /;
-GAMS 32.2.0  rc62c018 Released Aug 26, 2020 DEX-DEG x86 64bit/Mac OS X - 12/12/20 15:14:23 Page 2
+1040   
+1041  alias(teams,i);
+1042  binary variable x(teams, conf, div);
+1043  variable divTotalDist(conf,div);
+1044  free variable totalDist;
+1045   
+1046  equations
+1047      assignOne(teams),
+1048      balanceDivisions(conf,div),
+1049  *    divDist(conf,div,teams),
+1050      defObj
+1051  ;
+1052   
+1053  assignOne(teams)..
+1054      sum((conf,div), x(teams, conf, div)) =E= 1;
+1055   
+1056  balanceDivisions(conf,div)..
+1057      sum(teams, x(teams, conf, div)) =E= 4;
+1058   
+1059  *divDist(conf,div,teams)..
+1060  *    divTotalDist(conf,div) =E= sum();
+1061   
+1062  defObj..
+1063      totalDist =E= 1;
+1064  *sum((conf,div), divTotalDist(conf,div));
+1065   
+1066  model NflReorg /all/;
+1067   
+1068  solve NflReorg using mip min totalDist;
+1069   
+1070  *display divTotalDist.l;
+1071  option x:2:1:2;
+1072  display x.l;
+GAMS 32.2.0  rc62c018 Released Aug 26, 2020 DEX-DEG x86 64bit/Mac OS X - 12/12/20 17:43:38 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Include File Summary
 
@@ -1051,10 +1084,488 @@ Include File Summary
      4       13 INCLUDE        1      13  ./Users/vadekh/Developer/GitHub/NFL-Reorganization/distances.csv
 
 
-COMPILATION TIME     =        0.019 SECONDS      3 MB  32.2.0 rc62c018 DEX-DEG
+COMPILATION TIME     =        0.024 SECONDS      3 MB  32.2.0 rc62c018 DEX-DEG
+GAMS 32.2.0  rc62c018 Released Aug 26, 2020 DEX-DEG x86 64bit/Mac OS X - 12/12/20 17:43:38 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Equation Listing    SOLVE NflReorg Using MIP From line 1068
 
 
-EXECUTION TIME       =        0.000 SECONDS      3 MB  32.2.0 rc62c018 DEX-DEG
+---- assignOne  =E=  
+
+assignOne(Titans)..  x(Titans,AFC,NORTH) + x(Titans,AFC,SOUTH) + x(Titans,AFC,EAST) + x(Titans,AFC,WEST) + x(Titans,NFC,NORTH) + x(Titans,NFC,SOUTH) + x(Titans,NFC,EAST) + x(Titans,NFC,WEST) =E= 1 ; (LHS = 0, INFES = 1 ****)
+     
+assignOne(Giants)..  x(Giants,AFC,NORTH) + x(Giants,AFC,SOUTH) + x(Giants,AFC,EAST) + x(Giants,AFC,WEST) + x(Giants,NFC,NORTH) + x(Giants,NFC,SOUTH) + x(Giants,NFC,EAST) + x(Giants,NFC,WEST) =E= 1 ; (LHS = 0, INFES = 1 ****)
+     
+assignOne(Steelers)..  x(Steelers,AFC,NORTH) + x(Steelers,AFC,SOUTH) + x(Steelers,AFC,EAST) + x(Steelers,AFC,WEST) + x(Steelers,NFC,NORTH) + x(Steelers,NFC,SOUTH) + x(Steelers,NFC,EAST) + x(Steelers,NFC,WEST) =E= 1 ; (LHS = 0, INFES = 1 ****)
+     
+REMAINING 29 ENTRIES SKIPPED
+
+
+---- balanceDivisions  =E=  
+
+balanceDivisions(AFC,NORTH)..  x(Titans,AFC,NORTH) + x(Giants,AFC,NORTH) + x(Steelers,AFC,NORTH) + x(Panthers,AFC,NORTH) + x(Ravens,AFC,NORTH) + x(Buccaneers,AFC,NORTH) + x(Colts,AFC,NORTH) + x(Vikings,AFC,NORTH) + x(Cardinals,AFC,NORTH) + x(Cowboys,AFC,NORTH) + x(Falcons,AFC,NORTH) + x(Jets,AFC,NORTH) + x(Broncos,AFC,NORTH) + x(Dolphins,AFC,NORTH) + x(Eagles,AFC,NORTH) + x(Bears,AFC,NORTH) + x(Patriots,AFC,NORTH) + x(Washington,AFC,NORTH) + x(Packers,AFC,NORTH) + x(Chargers,AFC,NORTH) + x(Saints,AFC,NORTH) + x(Texans,AFC,NORTH) + x(Bills,AFC,NORTH) + x(Forty-Niners,AFC,NORTH) + x(Jaguars,AFC,NORTH) + x(Browns,AFC,NORTH) + x(Raiders,AFC,NORTH) + x(Chiefs,AFC,NORTH) + x(Rams,AFC,NORTH) + x(Seahawks,AFC,NORTH) + x(Bengals,AFC,NORTH) + x(Lions,AFC,NORTH) =E= 4 ; (LHS = 0, INFES = 4 ****)
+     
+balanceDivisions(AFC,SOUTH)..  x(Titans,AFC,SOUTH) + x(Giants,AFC,SOUTH) + x(Steelers,AFC,SOUTH) + x(Panthers,AFC,SOUTH) + x(Ravens,AFC,SOUTH) + x(Buccaneers,AFC,SOUTH) + x(Colts,AFC,SOUTH) + x(Vikings,AFC,SOUTH) + x(Cardinals,AFC,SOUTH) + x(Cowboys,AFC,SOUTH) + x(Falcons,AFC,SOUTH) + x(Jets,AFC,SOUTH) + x(Broncos,AFC,SOUTH) + x(Dolphins,AFC,SOUTH) + x(Eagles,AFC,SOUTH) + x(Bears,AFC,SOUTH) + x(Patriots,AFC,SOUTH) + x(Washington,AFC,SOUTH) + x(Packers,AFC,SOUTH) + x(Chargers,AFC,SOUTH) + x(Saints,AFC,SOUTH) + x(Texans,AFC,SOUTH) + x(Bills,AFC,SOUTH) + x(Forty-Niners,AFC,SOUTH) + x(Jaguars,AFC,SOUTH) + x(Browns,AFC,SOUTH) + x(Raiders,AFC,SOUTH) + x(Chiefs,AFC,SOUTH) + x(Rams,AFC,SOUTH) + x(Seahawks,AFC,SOUTH) + x(Bengals,AFC,SOUTH) + x(Lions,AFC,SOUTH) =E= 4 ; (LHS = 0, INFES = 4 ****)
+     
+balanceDivisions(AFC,EAST)..  x(Titans,AFC,EAST) + x(Giants,AFC,EAST) + x(Steelers,AFC,EAST) + x(Panthers,AFC,EAST) + x(Ravens,AFC,EAST) + x(Buccaneers,AFC,EAST) + x(Colts,AFC,EAST) + x(Vikings,AFC,EAST) + x(Cardinals,AFC,EAST) + x(Cowboys,AFC,EAST) + x(Falcons,AFC,EAST) + x(Jets,AFC,EAST) + x(Broncos,AFC,EAST) + x(Dolphins,AFC,EAST) + x(Eagles,AFC,EAST) + x(Bears,AFC,EAST) + x(Patriots,AFC,EAST) + x(Washington,AFC,EAST) + x(Packers,AFC,EAST) + x(Chargers,AFC,EAST) + x(Saints,AFC,EAST) + x(Texans,AFC,EAST) + x(Bills,AFC,EAST) + x(Forty-Niners,AFC,EAST) + x(Jaguars,AFC,EAST) + x(Browns,AFC,EAST) + x(Raiders,AFC,EAST) + x(Chiefs,AFC,EAST) + x(Rams,AFC,EAST) + x(Seahawks,AFC,EAST) + x(Bengals,AFC,EAST) + x(Lions,AFC,EAST) =E= 4 ; (LHS = 0, INFES = 4 ****)
+     
+REMAINING 5 ENTRIES SKIPPED
+
+
+---- defObj  =E=  
+
+defObj..  totalDist =E= 1 ; (LHS = 0, INFES = 1 ****)
+     
+GAMS 32.2.0  rc62c018 Released Aug 26, 2020 DEX-DEG x86 64bit/Mac OS X - 12/12/20 17:43:38 Page 4
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Column Listing      SOLVE NflReorg Using MIP From line 1068
+
+
+---- x  
+
+x(Titans,AFC,NORTH)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+        1       assignOne(Titans)
+        1       balanceDivisions(AFC,NORTH)
+
+x(Titans,AFC,SOUTH)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+        1       assignOne(Titans)
+        1       balanceDivisions(AFC,SOUTH)
+
+x(Titans,AFC,EAST)
+                (.LO, .L, .UP, .M = 0, 0, 1, 0)
+        1       assignOne(Titans)
+        1       balanceDivisions(AFC,EAST)
+
+REMAINING 253 ENTRIES SKIPPED
+
+---- totalDist  
+
+totalDist
+                (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
+        1       defObj
+
+GAMS 32.2.0  rc62c018 Released Aug 26, 2020 DEX-DEG x86 64bit/Mac OS X - 12/12/20 17:43:38 Page 5
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Model Statistics    SOLVE NflReorg Using MIP From line 1068
+
+
+MODEL STATISTICS
+
+BLOCKS OF EQUATIONS           3     SINGLE EQUATIONS           41
+BLOCKS OF VARIABLES           2     SINGLE VARIABLES          257
+NON ZERO ELEMENTS           513     DISCRETE VARIABLES        256
+
+
+GENERATION TIME      =        0.007 SECONDS      4 MB  32.2.0 rc62c018 DEX-DEG
+GAMS 32.2.0  rc62c018 Released Aug 26, 2020 DEX-DEG x86 64bit/Mac OS X - 12/12/20 17:43:38 Page 6
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Solution Report     SOLVE NflReorg Using MIP From line 1068
+
+
+               S O L V E      S U M M A R Y
+
+     MODEL   NflReorg            OBJECTIVE  totalDist
+     TYPE    MIP                 DIRECTION  MINIMIZE
+     SOLVER  CPLEX               FROM LINE  1068
+
+**** SOLVER STATUS     1 Normal Completion         
+**** MODEL STATUS      1 Optimal                   
+**** OBJECTIVE VALUE                1.0000
+
+ RESOURCE USAGE, LIMIT          0.014 10000000000.000
+ ITERATION COUNT, LIMIT         0    2147483647
+
+IBM ILOG CPLEX   32.2.0 rc62c018 Released Aug 26, 2020 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex Link licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+
+Space for names approximately 0.01 Mb
+Use option 'names no' to turn use of names off
+MIP status(101): integer optimal solution
+Cplex Time: 0.00sec (det. 1.32 ticks)
+Fixing integer variables, and solving final LP...
+Fixed MIP status(1): optimal
+Cplex Time: 0.00sec (det. 0.10 ticks)
+Proven optimal solution.
+
+MIP Solution:            1.000000    (0 iterations, 0 nodes)
+Final Solve:             1.000000    (0 iterations)
+
+Best possible:           1.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+
+---- EQU assignOne  
+
+                    LOWER          LEVEL          UPPER         MARGINAL
+
+Titans               1.0000         1.0000         1.0000          .          
+Giants               1.0000         1.0000         1.0000          .          
+Steelers             1.0000         1.0000         1.0000          .          
+Panthers             1.0000         1.0000         1.0000          .          
+Ravens               1.0000         1.0000         1.0000          .          
+Buccaneers           1.0000         1.0000         1.0000          .          
+Colts                1.0000         1.0000         1.0000          .          
+Vikings              1.0000         1.0000         1.0000          .          
+Cardinals            1.0000         1.0000         1.0000          .          
+Cowboys              1.0000         1.0000         1.0000          .          
+Falcons              1.0000         1.0000         1.0000          .          
+Jets                 1.0000         1.0000         1.0000          .          
+Broncos              1.0000         1.0000         1.0000          .          
+Dolphins             1.0000         1.0000         1.0000          .          
+Eagles               1.0000         1.0000         1.0000          .          
+Bears                1.0000         1.0000         1.0000          .          
+Patriots             1.0000         1.0000         1.0000          .          
+Washington           1.0000         1.0000         1.0000          .          
+Packers              1.0000         1.0000         1.0000          .          
+Chargers             1.0000         1.0000         1.0000          .          
+Saints               1.0000         1.0000         1.0000          .          
+Texans               1.0000         1.0000         1.0000          .          
+Bills                1.0000         1.0000         1.0000          .          
+Forty-Niners         1.0000         1.0000         1.0000          .          
+Jaguars              1.0000         1.0000         1.0000          .          
+Browns               1.0000         1.0000         1.0000          .          
+Raiders              1.0000         1.0000         1.0000          .          
+Chiefs               1.0000         1.0000         1.0000          .          
+Rams                 1.0000         1.0000         1.0000          .          
+Seahawks             1.0000         1.0000         1.0000          .          
+Bengals              1.0000         1.0000         1.0000          .          
+Lions                1.0000         1.0000         1.0000          .          
+
+---- EQU balanceDivisions  
+
+                 LOWER          LEVEL          UPPER         MARGINAL
+
+AFC.NORTH         4.0000         4.0000         4.0000          .          
+AFC.SOUTH         4.0000         4.0000         4.0000          .          
+AFC.EAST          4.0000         4.0000         4.0000          .          
+AFC.WEST          4.0000         4.0000         4.0000          .          
+NFC.NORTH         4.0000         4.0000         4.0000          .          
+NFC.SOUTH         4.0000         4.0000         4.0000          .          
+NFC.EAST          4.0000         4.0000         4.0000          .          
+NFC.WEST          4.0000         4.0000         4.0000          .          
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- EQU defObj             1.0000         1.0000         1.0000         1.0000      
+
+---- VAR x  
+
+                              LOWER          LEVEL          UPPER         MARGINAL
+
+Titans      .AFC.NORTH          .             1.0000         1.0000         EPS         
+Titans      .AFC.SOUTH          .              .             1.0000         EPS         
+Titans      .AFC.EAST           .              .             1.0000         EPS         
+Titans      .AFC.WEST           .              .             1.0000         EPS         
+Titans      .NFC.NORTH          .              .             1.0000         EPS         
+Titans      .NFC.SOUTH          .              .             1.0000         EPS         
+Titans      .NFC.EAST           .              .             1.0000         EPS         
+Titans      .NFC.WEST           .              .             1.0000         EPS         
+Giants      .AFC.NORTH          .             1.0000         1.0000         EPS         
+Giants      .AFC.SOUTH          .              .             1.0000         EPS         
+Giants      .AFC.EAST           .              .             1.0000         EPS         
+Giants      .AFC.WEST           .              .             1.0000         EPS         
+Giants      .NFC.NORTH          .              .             1.0000         EPS         
+Giants      .NFC.SOUTH          .              .             1.0000         EPS         
+Giants      .NFC.EAST           .              .             1.0000         EPS         
+Giants      .NFC.WEST           .              .             1.0000         EPS         
+Steelers    .AFC.NORTH          .             1.0000         1.0000         EPS         
+Steelers    .AFC.SOUTH          .              .             1.0000         EPS         
+Steelers    .AFC.EAST           .              .             1.0000         EPS         
+Steelers    .AFC.WEST           .              .             1.0000         EPS         
+Steelers    .NFC.NORTH          .              .             1.0000         EPS         
+Steelers    .NFC.SOUTH          .              .             1.0000         EPS         
+Steelers    .NFC.EAST           .              .             1.0000         EPS         
+Steelers    .NFC.WEST           .              .             1.0000         EPS         
+Panthers    .AFC.NORTH          .             1.0000         1.0000         EPS         
+Panthers    .AFC.SOUTH          .              .             1.0000         EPS         
+Panthers    .AFC.EAST           .              .             1.0000         EPS         
+Panthers    .AFC.WEST           .              .             1.0000         EPS         
+Panthers    .NFC.NORTH          .              .             1.0000         EPS         
+Panthers    .NFC.SOUTH          .              .             1.0000         EPS         
+Panthers    .NFC.EAST           .              .             1.0000         EPS         
+Panthers    .NFC.WEST           .              .             1.0000         EPS         
+Ravens      .AFC.NORTH          .              .             1.0000         EPS         
+Ravens      .AFC.SOUTH          .             1.0000         1.0000         EPS         
+Ravens      .AFC.EAST           .              .             1.0000         EPS         
+Ravens      .AFC.WEST           .              .             1.0000         EPS         
+Ravens      .NFC.NORTH          .              .             1.0000         EPS         
+Ravens      .NFC.SOUTH          .              .             1.0000         EPS         
+Ravens      .NFC.EAST           .              .             1.0000         EPS         
+Ravens      .NFC.WEST           .              .             1.0000         EPS         
+Buccaneers  .AFC.NORTH          .              .             1.0000         EPS         
+Buccaneers  .AFC.SOUTH          .             1.0000         1.0000         EPS         
+Buccaneers  .AFC.EAST           .              .             1.0000         EPS         
+Buccaneers  .AFC.WEST           .              .             1.0000         EPS         
+Buccaneers  .NFC.NORTH          .              .             1.0000         EPS         
+Buccaneers  .NFC.SOUTH          .              .             1.0000         EPS         
+Buccaneers  .NFC.EAST           .              .             1.0000         EPS         
+Buccaneers  .NFC.WEST           .              .             1.0000         EPS         
+Colts       .AFC.NORTH          .              .             1.0000         EPS         
+Colts       .AFC.SOUTH          .             1.0000         1.0000         EPS         
+Colts       .AFC.EAST           .              .             1.0000         EPS         
+Colts       .AFC.WEST           .              .             1.0000         EPS         
+Colts       .NFC.NORTH          .              .             1.0000         EPS         
+Colts       .NFC.SOUTH          .              .             1.0000         EPS         
+Colts       .NFC.EAST           .              .             1.0000         EPS         
+Colts       .NFC.WEST           .              .             1.0000         EPS         
+Vikings     .AFC.NORTH          .              .             1.0000         EPS         
+Vikings     .AFC.SOUTH          .             1.0000         1.0000         EPS         
+Vikings     .AFC.EAST           .              .             1.0000         EPS         
+Vikings     .AFC.WEST           .              .             1.0000         EPS         
+Vikings     .NFC.NORTH          .              .             1.0000         EPS         
+Vikings     .NFC.SOUTH          .              .             1.0000         EPS         
+Vikings     .NFC.EAST           .              .             1.0000         EPS         
+Vikings     .NFC.WEST           .              .             1.0000         EPS         
+Cardinals   .AFC.NORTH          .              .             1.0000         EPS         
+Cardinals   .AFC.SOUTH          .              .             1.0000         EPS         
+Cardinals   .AFC.EAST           .             1.0000         1.0000         EPS         
+Cardinals   .AFC.WEST           .              .             1.0000         EPS         
+Cardinals   .NFC.NORTH          .              .             1.0000         EPS         
+Cardinals   .NFC.SOUTH          .              .             1.0000         EPS         
+Cardinals   .NFC.EAST           .              .             1.0000         EPS         
+Cardinals   .NFC.WEST           .              .             1.0000         EPS         
+Cowboys     .AFC.NORTH          .              .             1.0000         EPS         
+Cowboys     .AFC.SOUTH          .              .             1.0000         EPS         
+Cowboys     .AFC.EAST           .             1.0000         1.0000         EPS         
+Cowboys     .AFC.WEST           .              .             1.0000         EPS         
+Cowboys     .NFC.NORTH          .              .             1.0000         EPS         
+Cowboys     .NFC.SOUTH          .              .             1.0000         EPS         
+Cowboys     .NFC.EAST           .              .             1.0000         EPS         
+Cowboys     .NFC.WEST           .              .             1.0000         EPS         
+Falcons     .AFC.NORTH          .              .             1.0000         EPS         
+Falcons     .AFC.SOUTH          .              .             1.0000         EPS         
+Falcons     .AFC.EAST           .             1.0000         1.0000         EPS         
+Falcons     .AFC.WEST           .              .             1.0000         EPS         
+Falcons     .NFC.NORTH          .              .             1.0000         EPS         
+Falcons     .NFC.SOUTH          .              .             1.0000         EPS         
+Falcons     .NFC.EAST           .              .             1.0000         EPS         
+Falcons     .NFC.WEST           .              .             1.0000         EPS         
+Jets        .AFC.NORTH          .              .             1.0000         EPS         
+Jets        .AFC.SOUTH          .              .             1.0000         EPS         
+Jets        .AFC.EAST           .             1.0000         1.0000         EPS         
+Jets        .AFC.WEST           .              .             1.0000         EPS         
+Jets        .NFC.NORTH          .              .             1.0000         EPS         
+Jets        .NFC.SOUTH          .              .             1.0000         EPS         
+Jets        .NFC.EAST           .              .             1.0000         EPS         
+Jets        .NFC.WEST           .              .             1.0000         EPS         
+Broncos     .AFC.NORTH          .              .             1.0000         EPS         
+Broncos     .AFC.SOUTH          .              .             1.0000         EPS         
+Broncos     .AFC.EAST           .              .             1.0000         EPS         
+Broncos     .AFC.WEST           .             1.0000         1.0000         EPS         
+Broncos     .NFC.NORTH          .              .             1.0000         EPS         
+Broncos     .NFC.SOUTH          .              .             1.0000         EPS         
+Broncos     .NFC.EAST           .              .             1.0000         EPS         
+Broncos     .NFC.WEST           .              .             1.0000         EPS         
+Dolphins    .AFC.NORTH          .              .             1.0000         EPS         
+Dolphins    .AFC.SOUTH          .              .             1.0000         EPS         
+Dolphins    .AFC.EAST           .              .             1.0000         EPS         
+Dolphins    .AFC.WEST           .             1.0000         1.0000         EPS         
+Dolphins    .NFC.NORTH          .              .             1.0000         EPS         
+Dolphins    .NFC.SOUTH          .              .             1.0000         EPS         
+Dolphins    .NFC.EAST           .              .             1.0000         EPS         
+Dolphins    .NFC.WEST           .              .             1.0000         EPS         
+Eagles      .AFC.NORTH          .              .             1.0000         EPS         
+Eagles      .AFC.SOUTH          .              .             1.0000         EPS         
+Eagles      .AFC.EAST           .              .             1.0000         EPS         
+Eagles      .AFC.WEST           .             1.0000         1.0000         EPS         
+Eagles      .NFC.NORTH          .              .             1.0000         EPS         
+Eagles      .NFC.SOUTH          .              .             1.0000         EPS         
+Eagles      .NFC.EAST           .              .             1.0000         EPS         
+Eagles      .NFC.WEST           .              .             1.0000         EPS         
+Bears       .AFC.NORTH          .              .             1.0000         EPS         
+Bears       .AFC.SOUTH          .              .             1.0000         EPS         
+Bears       .AFC.EAST           .              .             1.0000         EPS         
+Bears       .AFC.WEST           .             1.0000         1.0000         EPS         
+Bears       .NFC.NORTH          .              .             1.0000         EPS         
+Bears       .NFC.SOUTH          .              .             1.0000         EPS         
+Bears       .NFC.EAST           .              .             1.0000         EPS         
+Bears       .NFC.WEST           .              .             1.0000         EPS         
+Patriots    .AFC.NORTH          .              .             1.0000         EPS         
+Patriots    .AFC.SOUTH          .              .             1.0000         EPS         
+Patriots    .AFC.EAST           .              .             1.0000         EPS         
+Patriots    .AFC.WEST           .              .             1.0000         EPS         
+Patriots    .NFC.NORTH          .             1.0000         1.0000         EPS         
+Patriots    .NFC.SOUTH          .              .             1.0000         EPS         
+Patriots    .NFC.EAST           .              .             1.0000         EPS         
+Patriots    .NFC.WEST           .              .             1.0000         EPS         
+Washington  .AFC.NORTH          .              .             1.0000         EPS         
+Washington  .AFC.SOUTH          .              .             1.0000         EPS         
+Washington  .AFC.EAST           .              .             1.0000         EPS         
+Washington  .AFC.WEST           .              .             1.0000         EPS         
+Washington  .NFC.NORTH          .             1.0000         1.0000         EPS         
+Washington  .NFC.SOUTH          .              .             1.0000         EPS         
+Washington  .NFC.EAST           .              .             1.0000         EPS         
+Washington  .NFC.WEST           .              .             1.0000         EPS         
+Packers     .AFC.NORTH          .              .             1.0000         EPS         
+Packers     .AFC.SOUTH          .              .             1.0000         EPS         
+Packers     .AFC.EAST           .              .             1.0000         EPS         
+Packers     .AFC.WEST           .              .             1.0000         EPS         
+Packers     .NFC.NORTH          .             1.0000         1.0000         EPS         
+Packers     .NFC.SOUTH          .              .             1.0000         EPS         
+Packers     .NFC.EAST           .              .             1.0000         EPS         
+Packers     .NFC.WEST           .              .             1.0000         EPS         
+Chargers    .AFC.NORTH          .              .             1.0000         EPS         
+Chargers    .AFC.SOUTH          .              .             1.0000         EPS         
+Chargers    .AFC.EAST           .              .             1.0000         EPS         
+Chargers    .AFC.WEST           .              .             1.0000         EPS         
+Chargers    .NFC.NORTH          .             1.0000         1.0000         EPS         
+Chargers    .NFC.SOUTH          .              .             1.0000         EPS         
+Chargers    .NFC.EAST           .              .             1.0000         EPS         
+Chargers    .NFC.WEST           .              .             1.0000         EPS         
+Saints      .AFC.NORTH          .              .             1.0000         EPS         
+Saints      .AFC.SOUTH          .              .             1.0000         EPS         
+Saints      .AFC.EAST           .              .             1.0000         EPS         
+Saints      .AFC.WEST           .              .             1.0000         EPS         
+Saints      .NFC.NORTH          .              .             1.0000         EPS         
+Saints      .NFC.SOUTH          .             1.0000         1.0000         EPS         
+Saints      .NFC.EAST           .              .             1.0000         EPS         
+Saints      .NFC.WEST           .              .             1.0000         EPS         
+Texans      .AFC.NORTH          .              .             1.0000         EPS         
+Texans      .AFC.SOUTH          .              .             1.0000         EPS         
+Texans      .AFC.EAST           .              .             1.0000         EPS         
+Texans      .AFC.WEST           .              .             1.0000         EPS         
+Texans      .NFC.NORTH          .              .             1.0000         EPS         
+Texans      .NFC.SOUTH          .             1.0000         1.0000         EPS         
+Texans      .NFC.EAST           .              .             1.0000         EPS         
+Texans      .NFC.WEST           .              .             1.0000         EPS         
+Bills       .AFC.NORTH          .              .             1.0000         EPS         
+Bills       .AFC.SOUTH          .              .             1.0000         EPS         
+Bills       .AFC.EAST           .              .             1.0000         EPS         
+Bills       .AFC.WEST           .              .             1.0000         EPS         
+Bills       .NFC.NORTH          .              .             1.0000         EPS         
+Bills       .NFC.SOUTH          .             1.0000         1.0000         EPS         
+Bills       .NFC.EAST           .              .             1.0000         EPS         
+Bills       .NFC.WEST           .              .             1.0000         EPS         
+Forty-Niners.AFC.NORTH          .              .             1.0000         EPS         
+Forty-Niners.AFC.SOUTH          .              .             1.0000         EPS         
+Forty-Niners.AFC.EAST           .              .             1.0000         EPS         
+Forty-Niners.AFC.WEST           .              .             1.0000         EPS         
+Forty-Niners.NFC.NORTH          .              .             1.0000         EPS         
+Forty-Niners.NFC.SOUTH          .             1.0000         1.0000         EPS         
+Forty-Niners.NFC.EAST           .              .             1.0000         EPS         
+Forty-Niners.NFC.WEST           .              .             1.0000         EPS         
+Jaguars     .AFC.NORTH          .              .             1.0000         EPS         
+Jaguars     .AFC.SOUTH          .              .             1.0000         EPS         
+Jaguars     .AFC.EAST           .              .             1.0000         EPS         
+Jaguars     .AFC.WEST           .              .             1.0000         EPS         
+Jaguars     .NFC.NORTH          .              .             1.0000         EPS         
+Jaguars     .NFC.SOUTH          .              .             1.0000         EPS         
+Jaguars     .NFC.EAST           .             1.0000         1.0000         EPS         
+Jaguars     .NFC.WEST           .              .             1.0000         EPS         
+Browns      .AFC.NORTH          .              .             1.0000         EPS         
+Browns      .AFC.SOUTH          .              .             1.0000         EPS         
+Browns      .AFC.EAST           .              .             1.0000         EPS         
+Browns      .AFC.WEST           .              .             1.0000         EPS         
+Browns      .NFC.NORTH          .              .             1.0000         EPS         
+Browns      .NFC.SOUTH          .              .             1.0000         EPS         
+Browns      .NFC.EAST           .             1.0000         1.0000         EPS         
+Browns      .NFC.WEST           .              .             1.0000         EPS         
+Raiders     .AFC.NORTH          .              .             1.0000         EPS         
+Raiders     .AFC.SOUTH          .              .             1.0000         EPS         
+Raiders     .AFC.EAST           .              .             1.0000         EPS         
+Raiders     .AFC.WEST           .              .             1.0000         EPS         
+Raiders     .NFC.NORTH          .              .             1.0000         EPS         
+Raiders     .NFC.SOUTH          .              .             1.0000         EPS         
+Raiders     .NFC.EAST           .             1.0000         1.0000         EPS         
+Raiders     .NFC.WEST           .              .             1.0000         EPS         
+Chiefs      .AFC.NORTH          .              .             1.0000         EPS         
+Chiefs      .AFC.SOUTH          .              .             1.0000         EPS         
+Chiefs      .AFC.EAST           .              .             1.0000         EPS         
+Chiefs      .AFC.WEST           .              .             1.0000         EPS         
+Chiefs      .NFC.NORTH          .              .             1.0000         EPS         
+Chiefs      .NFC.SOUTH          .              .             1.0000         EPS         
+Chiefs      .NFC.EAST           .             1.0000         1.0000         EPS         
+Chiefs      .NFC.WEST           .              .             1.0000         EPS         
+Rams        .AFC.NORTH          .              .             1.0000         EPS         
+Rams        .AFC.SOUTH          .              .             1.0000         EPS         
+Rams        .AFC.EAST           .              .             1.0000         EPS         
+Rams        .AFC.WEST           .              .             1.0000         EPS         
+Rams        .NFC.NORTH          .              .             1.0000         EPS         
+Rams        .NFC.SOUTH          .              .             1.0000         EPS         
+Rams        .NFC.EAST           .              .             1.0000         EPS         
+Rams        .NFC.WEST           .             1.0000         1.0000         EPS         
+Seahawks    .AFC.NORTH          .              .             1.0000         EPS         
+Seahawks    .AFC.SOUTH          .              .             1.0000         EPS         
+Seahawks    .AFC.EAST           .              .             1.0000         EPS         
+Seahawks    .AFC.WEST           .              .             1.0000         EPS         
+Seahawks    .NFC.NORTH          .              .             1.0000         EPS         
+Seahawks    .NFC.SOUTH          .              .             1.0000         EPS         
+Seahawks    .NFC.EAST           .              .             1.0000         EPS         
+Seahawks    .NFC.WEST           .             1.0000         1.0000         EPS         
+Bengals     .AFC.NORTH          .              .             1.0000         EPS         
+Bengals     .AFC.SOUTH          .              .             1.0000         EPS         
+Bengals     .AFC.EAST           .              .             1.0000         EPS         
+Bengals     .AFC.WEST           .              .             1.0000         EPS         
+Bengals     .NFC.NORTH          .              .             1.0000         EPS         
+Bengals     .NFC.SOUTH          .              .             1.0000         EPS         
+Bengals     .NFC.EAST           .              .             1.0000         EPS         
+Bengals     .NFC.WEST           .             1.0000         1.0000         EPS         
+Lions       .AFC.NORTH          .              .             1.0000         EPS         
+Lions       .AFC.SOUTH          .              .             1.0000         EPS         
+Lions       .AFC.EAST           .              .             1.0000         EPS         
+Lions       .AFC.WEST           .              .             1.0000         EPS         
+Lions       .NFC.NORTH          .              .             1.0000         EPS         
+Lions       .NFC.SOUTH          .              .             1.0000         EPS         
+Lions       .NFC.EAST           .              .             1.0000         EPS         
+Lions       .NFC.WEST           .             1.0000         1.0000         EPS         
+
+                           LOWER          LEVEL          UPPER         MARGINAL
+
+---- VAR totalDist         -INF            1.0000        +INF             .          
+
+
+**** REPORT SUMMARY :        0     NONOPT
+                             0 INFEASIBLE
+                             0  UNBOUNDED
+GAMS 32.2.0  rc62c018 Released Aug 26, 2020 DEX-DEG x86 64bit/Mac OS X - 12/12/20 17:43:38 Page 7
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+----   1072 VARIABLE x.L  
+
+               AFC.NORTH   AFC.SOUTH    AFC.EAST    AFC.WEST   NFC.NORTH   NFC.SOUTH    NFC.EAST    NFC.WEST
+
+Titans              1.00
+Giants              1.00
+Steelers            1.00
+Panthers            1.00
+Ravens                          1.00
+Buccaneers                      1.00
+Colts                           1.00
+Vikings                         1.00
+Cardinals                                   1.00
+Cowboys                                     1.00
+Falcons                                     1.00
+Jets                                        1.00
+Broncos                                                 1.00
+Dolphins                                                1.00
+Eagles                                                  1.00
+Bears                                                   1.00
+Patriots                                                            1.00
+Washington                                                          1.00
+Packers                                                             1.00
+Chargers                                                            1.00
+Saints                                                                          1.00
+Texans                                                                          1.00
+Bills                                                                           1.00
+Forty-Niners                                                                    1.00
+Jaguars                                                                                     1.00
+Browns                                                                                      1.00
+Raiders                                                                                     1.00
+Chiefs                                                                                      1.00
+Rams                                                                                                    1.00
+Seahawks                                                                                                1.00
+Bengals                                                                                                 1.00
+Lions                                                                                                   1.00
+
+
+
+EXECUTION TIME       =        0.049 SECONDS      4 MB  32.2.0 rc62c018 DEX-DEG
 
 
 USER: Introduction to Optimization (CS/ISyE/ECE 524) S200826/0001AB-GEN

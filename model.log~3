@@ -1,4 +1,4 @@
---- Job model.gms Start 12/12/20 15:09:11 32.2.0 rc62c018 DEX-DEG x86 64bit/Mac OS X
+--- Job model.gms Start 12/12/20 17:43:01 32.2.0 rc62c018 DEX-DEG x86 64bit/Mac OS X
 --- Applying:
     /Library/Frameworks/GAMS.framework/Versions/32/Resources/gmsprmun.txt
 --- GAMS Parameters defined
@@ -18,14 +18,21 @@ Licensee: Introduction to Optimization (CS/ISyE/ECE 524) S200826/0001AB-GEN
           Evaluation license: Not for commercial or production use
 --- Starting compilation
 --- model.gms(5) 3 Mb
---- call csv2gdx Coordinates.csv useHeader=y id=lat index=1 values=3
+--- call csv2gdx Coordinates.csv useHeader=y id=teams index=1
 No errors, CSV2GDX time = 3ms
---- model.gms(9) 3 Mb
+--- model.gms(6) 3 Mb
 --- GDXin=/Users/vadekh/Developer/GitHub/NFL-Reorganization/Coordinates.gdx
---- model.gms(20) 3 Mb
+--- model.gms(13) 3 Mb
 --- . distances.csv(1024) 3 Mb
---- model.gms(24) 3 Mb
---- Starting execution: elapsed 0:00:00.022
---- model.gms(1048) 4 Mb
-*** Status: Normal completion
---- Job model.gms Stop 12/12/20 15:09:11 elapsed 0:00:00.024
+--- model.gms(43) 3 Mb 2 Errors
+*** Error  71 in /Users/vadekh/Developer/GitHub/NFL-Reorganization/model.gms
+    The symbol shown has been declared as an equation, but no
+       Symbolic equation (..) was found. hint - look for commas in the
+       Documentation text for the equations. use quotes around the
+       Text or eliminate the commas.
+*** Error 256 in /Users/vadekh/Developer/GitHub/NFL-Reorganization/model.gms
+    Error(s) in analyzing solve statement. More detail appears
+    Below the solve statement above
+--- model.gms(47) 3 Mb 2 Errors
+*** Status: Compilation error(s)
+--- Job model.gms Stop 12/12/20 17:43:01 elapsed 0:00:00.024

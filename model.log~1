@@ -1,4 +1,4 @@
---- Job model.gms Start 12/12/20 15:13:43 32.2.0 rc62c018 DEX-DEG x86 64bit/Mac OS X
+--- Job model.gms Start 12/12/20 17:43:30 32.2.0 rc62c018 DEX-DEG x86 64bit/Mac OS X
 --- Applying:
     /Library/Frameworks/GAMS.framework/Versions/32/Resources/gmsprmun.txt
 --- GAMS Parameters defined
@@ -19,13 +19,18 @@ Licensee: Introduction to Optimization (CS/ISyE/ECE 524) S200826/0001AB-GEN
 --- Starting compilation
 --- model.gms(5) 3 Mb
 --- call csv2gdx Coordinates.csv useHeader=y id=teams index=1
-No errors, CSV2GDX time = 2ms
+No errors, CSV2GDX time = 3ms
 --- model.gms(6) 3 Mb
 --- GDXin=/Users/vadekh/Developer/GitHub/NFL-Reorganization/Coordinates.gdx
---- model.gms(15) 3 Mb
+--- model.gms(13) 3 Mb
 --- . distances.csv(1024) 3 Mb
---- model.gms(20) 3 Mb
---- Starting execution: elapsed 0:00:00.020
---- model.gms(1043) 4 Mb
-*** Status: Normal completion
---- Job model.gms Stop 12/12/20 15:13:43 elapsed 0:00:00.022
+--- model.gms(46) 3 Mb 1 Error
+*** Error 141 in /Users/vadekh/Developer/GitHub/NFL-Reorganization/model.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- model.gms(48) 3 Mb 1 Error
+*** Status: Compilation error(s)
+--- Job model.gms Stop 12/12/20 17:43:30 elapsed 0:00:00.024
