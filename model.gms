@@ -14,55 +14,47 @@ $offdelim
 /;
 
 alias(teams,teams2);
-binary variable twoTeamsPlay(teams, teams2, div);
-binary variable x(teams, div);
+binary variable x(teams, teams2, div);
 free variable totalDist;
-scalar bigM /1000/;
 
 equations
-    assignOne(teams,teams),
-*    balanceDivisions(div),
-*    twoTeamsPlaySet(teams, teams2, div),
-    lim22Play(teams),
-*    lim2Play(teams,div),
-    balancePlay(teams,teams2,div),
+    matchups(teams,teams),
+    games(teams),
+    matchupReflex(teams,teams2,div),
     balanceDiv(div),
-    last(teams,div),
+    sameDiv(teams,div),
     defObj
 ;
 
-assignOne(teams,teams2)..
-    sum(div, twoTeamsPlay(teams,teams2,div)) =L= 1;
-
-*balanceDivisions(div)..
-*    sum(teams, x(teams, div)) =E= 4;
+matchups(teams,teams2)..
+    sum(div, x(teams,teams2,div)) =L= 1;
     
-*twoTeamsPlaySet(teams, teams2, div)..
-*    x(teams, div) + x(teams2, div) - (bigM * twoTeamsPlay(teams,teams2)) =L= 2;
+games(teams)..
+    4 =E= sum((teams2,div), x(teams,teams2,div));
     
-lim22Play(teams)..
-    4 =E= sum((teams2,div), twoTeamsPlay(teams,teams2,div));
-    
-*lim2Play(teams2,div)..
-*    4 =G= sum(teams, twoTeamsPlay(teams,teams2,div));
-    
-balancePlay(teams,teams2,div)..
-    twoTeamsPlay(teams,teams2,div) =E= twoTeamsPlay(teams2,teams,div);
+matchupReflex(teams,teams2,div)..
+    x(teams,teams2,div) =E= x(teams2,teams,div);
 
 balanceDiv(div)..
-    sum((teams,teams2), twoTeamsPlay(teams,teams2,div)) =E= 16;
+    sum((teams,teams2), x(teams,teams2,div)) =E= 16;
     
-last(teams,div)..
-    sum(teams2, twoTeamsPlay(teams,teams2,div)) =E= 4*twoTeamsPlay(teams,teams,div);
+sameDiv(teams,div)..
+    sum(teams2, x(teams,teams2,div)) =E= 4*x(teams,teams,div);
     
 defObj..
-    totalDist =E= sum((teams, teams2, div), 2*twoTeamsPlay(teams, teams2, div)*dist(teams,teams2));
+    totalDist =E= sum((teams, teams2, div), 2*x(teams, teams2, div)*dist(teams,teams2));
     
 model NflReorg /all/;
 
 solve NflReorg using mip min totalDist;
 
-options twoTeamsPlay:0:0:1;
-options x:0:1:1;
-*display x.l;
-display twoTeamsPlay.l;
+options x:0:0:1;
+display x.l;
+
+parameter y(teams,div);
+
+loop((teams,div) $ (x.l(teams,teams,div) > 0),
+    y(teams,div) = 1;
+
+);
+display y;
