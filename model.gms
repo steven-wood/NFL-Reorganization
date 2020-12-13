@@ -44,12 +44,9 @@ sameDiv(teams,div)..
 defObj..
     totalDist =E= sum((teams, teams2, div), 2*x(teams, teams2, div)*dist(teams,teams2));
     
-model NflReorg /all/;
+model NflReorg /matchups, games, matchupReflex, balanceDiv, sameDiv, defObj/;
 
 solve NflReorg using mip min totalDist;
-
-options x:0:0:1;
-display x.l;
 
 parameter y(teams,div);
 
@@ -59,7 +56,72 @@ loop((teams,div) $ (x.l(teams,teams,div) > 0),
 );
 display y;
 
-*Current divsions
+*Rivalries solve
+
+equations
+    rivalry1,
+    rivalry2
+    rivalry3,
+    rivalry4,
+    rivalry5,
+    rivalry6,
+    rivalry7,
+    rivalry8,
+    rivalry9,
+    rivalry10,
+    sameStadium1,
+    sameStadium2
+;
+
+rivalry1..
+    sum(div, x("Packers","Bears",div)) =E= 1;
+    
+rivalry2..
+    sum(div, x("Cowboys","Eagles",div)) =E= 1;
+    
+rivalry3..
+    sum(div, x("Ravens","Steelers",div)) =E= 1;
+    
+rivalry4..
+    sum(div, x("Chiefs","Raiders",div)) =E= 1;
+    
+rivalry5..
+    sum(div, x("Washington","Giants",div)) =E= 1;
+    
+rivalry6..
+    sum(div, x("Jets","Patriots",div)) =E= 1;
+    
+rivalry7..
+    sum(div, x("Forty-Niners","Rams",div)) =E= 1;
+    
+rivalry8..
+    sum(div, x("Bills","Dolphins",div)) =E= 1;
+    
+rivalry9..
+    sum(div, x("Falcons","Saints",div)) =E= 1;
+    
+rivalry10..
+    sum(div, x("Chargers","Broncos",div)) =E= 1;
+    
+sameStadium1..
+    sum(div, x("Chargers","Rams",div)) =E= 0;
+
+sameStadium2..
+    sum(div, x("Giants","Jets",div)) =E= 0;
+
+model rivals /all/;
+
+solve rivals using mip min totalDist;
+
+parameter r(teams,div);
+
+loop((teams,div) $ (x.l(teams,teams,div) > 0),
+    r(teams,div) = 1;
+
+);
+display r;
+
+*Current divsions solve
 
 x.fx("Titans","Colts","1") = 1;
 x.fx("Titans","Texans","1") = 1;
@@ -87,3 +149,11 @@ x.fx("Saints","Falcons","8") = 1;
 x.fx("Saints","Panthers","8") = 1;
 
 solve NflReorg using mip min totalDist;
+
+parameter c(teams,div);
+
+loop((teams,div) $ (x.l(teams,teams,div) > 0),
+    c(teams,div) = 1;
+
+);
+display c;
