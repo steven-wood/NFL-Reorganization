@@ -1,5 +1,4 @@
-set conf /AFC, NFC/,
-    div /NORTH, SOUTH, EAST, WEST/,
+set div /1*8/,
     teams;
 
 $ call csv2gdx Coordinates.csv useHeader=y id=teams index=1
@@ -14,35 +13,32 @@ $include distances.csv
 $offdelim
 /;
 
-alias(teams,i);
-binary variable x(teams, conf, div);
-variable divTotalDist(conf,div);
+alias(teams,teams2);
+binary variable twoTeamsPlay(teams, teams2);
+binary variable x(teams, div);
 free variable totalDist;
+
+twoTeamsPlay.lo(teams,teams2) = 0;
 
 equations
     assignOne(teams),
-    balanceDivisions(conf,div),
-*    divDist(conf,div,teams),
+    balanceDivisions(div),
+    twoTeamsPlaySet(teams, teams2, div),
     defObj
 ;
 
 assignOne(teams)..
-    sum((conf,div), x(teams, conf, div)) =E= 1;
+    sum((div), x(teams, div)) =E= 1;
 
-balanceDivisions(conf,div)..
-    sum(teams, x(teams, conf, div)) =E= 4;
+balanceDivisions(div)..
+    sum(teams, x(teams, div)) =E= 4;
     
-*divDist(conf,div,teams)..
-*    divTotalDist(conf,div) =E= sum();
+twoTeamsPlaySet(teams, teams2, div)..
+    twoTeamsPlay(teams, teams2) =e= x(teams, div)+x(teams2, div)-1;
     
 defObj..
-    totalDist =E= 1;
-*sum((conf,div), divTotalDist(conf,div));
+    totalDist =E= sum((teams, teams2), twoTeamsPlay(teams, teams2)*dist(teams,teams2));
     
 model NflReorg /all/;
 
 solve NflReorg using mip min totalDist;
-
-*display divTotalDist.l;
-option x:2:1:2;
-display x.l;
