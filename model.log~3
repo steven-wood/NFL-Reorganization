@@ -1,4 +1,4 @@
---- Job model.gms Start 12/12/20 17:43:01 32.2.0 rc62c018 DEX-DEG x86 64bit/Mac OS X
+--- Job model.gms Start 12/12/20 20:32:00 32.2.0 rc62c018 DEX-DEG x86 64bit/Mac OS X
 --- Applying:
     /Library/Frameworks/GAMS.framework/Versions/32/Resources/gmsprmun.txt
 --- GAMS Parameters defined
@@ -17,22 +17,77 @@ Licensee: Introduction to Optimization (CS/ISyE/ECE 524) S200826/0001AB-GEN
           /Users/vadekh/Library/Application Support/GAMS/gamslice.txt
           Evaluation license: Not for commercial or production use
 --- Starting compilation
---- model.gms(5) 3 Mb
+--- model.gms(4) 3 Mb
 --- call csv2gdx Coordinates.csv useHeader=y id=teams index=1
-No errors, CSV2GDX time = 3ms
---- model.gms(6) 3 Mb
+No errors, CSV2GDX time = 6ms
+--- model.gms(5) 3 Mb
 --- GDXin=/Users/vadekh/Developer/GitHub/NFL-Reorganization/Coordinates.gdx
---- model.gms(13) 3 Mb
+--- model.gms(12) 3 Mb
 --- . distances.csv(1024) 3 Mb
---- model.gms(43) 3 Mb 2 Errors
-*** Error  71 in /Users/vadekh/Developer/GitHub/NFL-Reorganization/model.gms
-    The symbol shown has been declared as an equation, but no
-       Symbolic equation (..) was found. hint - look for commas in the
-       Documentation text for the equations. use quotes around the
-       Text or eliminate the commas.
-*** Error 256 in /Users/vadekh/Developer/GitHub/NFL-Reorganization/model.gms
-    Error(s) in analyzing solve statement. More detail appears
-    Below the solve statement above
---- model.gms(47) 3 Mb 2 Errors
-*** Status: Compilation error(s)
---- Job model.gms Stop 12/12/20 17:43:01 elapsed 0:00:00.024
+--- model.gms(45) 3 Mb
+--- Starting execution: elapsed 0:00:00.047
+--- Generating MIP model NflReorg
+--- model.gms(1069) 8 Mb
+---   8,233 rows  1,281 columns  25,823 non-zeroes
+---   256 discrete-columns
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.100
+IBM ILOG CPLEX   32.2.0 rc62c018 Released Aug 26, 2020 DEG x86 64bit/Mac OS X 
+--- GAMS/Cplex Link licensed for continuous and discrete problems.
+Cplex 12.10.0.0
+Reading data...
+Starting Cplex...
+Space for names approximately 0.38 Mb
+Use option 'names no' to turn use of names off
+Version identifier: 12.10.0.0 | 2019-11-26 | 843d4de
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_Parallel                                1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_WorkDir                                 "/Users/vadekh/Developer/GitHub/NFL-Reorganization/225a/"
+Tried aggregator 1 time.
+MIP Presolve eliminated 273 rows and 35 columns.
+Reduced MIP has 7960 rows, 1246 columns, and 24272 nonzeros.
+Reduced MIP has 256 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (9.72 ticks)
+Found incumbent of value 0.000000 after 0.06 sec. (17.12 ticks)
+Probing time = 0.01 sec. (3.61 ticks)
+Cover probing fixed 0 vars, tightened 990 bounds.
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve eliminated 3960 rows and 495 columns.
+Reduced MIP has 4000 rows, 751 columns, and 12392 nonzeros.
+Reduced MIP has 256 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (22.90 ticks)
+Probing time = 0.00 sec. (1.75 ticks)
+Clique table members: 32.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Primal unbounded due to dual bounds, variable 'twoTeamsPlay(Titans.Giants)'.
+Presolve time = 0.00 sec. (0.96 ticks)
+Tried aggregator 1 time.
+No LP presolve or aggregator reductions.
+Presolve time = 0.00 sec. (1.32 ticks)
+Initializing dual steep norms . . .
+Iteration log . . .
+Iteration:     1    Scaled infeas =            49.048828
+Switched to devex.
+Root relaxation solution time = 0.01 sec. (8.63 ticks)
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+*     0+    0                            0.0000                           0.00%
+Found incumbent of value 0.000000 after 0.13 sec. (58.46 ticks)
+      0     0     unbounded              0.0000                    133         
+Root node processing (before b&c):
+  Real time             =    0.13 sec. (58.54 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.13 sec. (58.54 ticks)
+MIP status(118): integer unbounded
+Cplex Time: 0.13sec (det. 58.54 ticks)
+Problem is unbounded.
+--- Reading solution for model NflReorg
+*** Status: Normal completion
+--- Job model.gms Stop 12/12/20 20:32:00 elapsed 0:00:00.292
