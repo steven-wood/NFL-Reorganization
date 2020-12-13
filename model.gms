@@ -58,3 +58,32 @@ loop((teams,div) $ (x.l(teams,teams,div) > 0),
 
 );
 display y;
+
+*Current divsions
+
+x.fx("Titans","Colts","1") = 1;
+x.fx("Titans","Texans","1") = 1;
+x.fx("Titans","Jaguars","1") = 1;
+x.fx("Steelers","Browns","2") = 1;
+x.fx("Steelers","Ravens","2") = 1;
+x.fx("Steelers","Bengals","2") = 1;
+x.fx("Chiefs","Raiders","3") = 1;
+x.fx("Chiefs","Broncos","3") = 1;
+x.fx("Chiefs","Chargers","3") = 1;
+x.fx("Bills","Dolphins","4") = 1;
+x.fx("Bills","Patriots","4") = 1;
+x.fx("Bills","Jets","4") = 1;
+x.fx("Giants","Washington","5") = 1;
+x.fx("Giants","Eagles","5") = 1;
+x.fx("Giants","Cowboys","5") = 1;
+x.fx("Rams","Seahawks","6") = 1;
+x.fx("Rams","Cardinals","6") = 1;
+x.fx("Rams","Forty-Niners","6") = 1;
+x.fx("Packers","Vikings","7") = 1;
+x.fx("Packers","Bears","7") = 1;
+x.fx("Packers","Lions","7") = 1;
+x.fx("Saints","Buccaneers","8") = 1;
+x.fx("Saints","Falcons","8") = 1;
+x.fx("Saints","Panthers","8") = 1;
+
+solve NflReorg using mip min totalDist;

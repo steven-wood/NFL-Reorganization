@@ -1,4 +1,4 @@
---- Job model.gms Start 12/13/20 11:06:57 32.2.0 rc62c018 DEX-DEG x86 64bit/Mac OS X
+--- Job model.gms Start 12/13/20 13:08:24 32.2.0 rc62c018 DEX-DEG x86 64bit/Mac OS X
 --- Applying:
     /Library/Frameworks/GAMS.framework/Versions/32/Resources/gmsprmun.txt
 --- GAMS Parameters defined
@@ -19,22 +19,17 @@ Licensee: Introduction to Optimization (CS/ISyE/ECE 524) S200826/0001AB-GEN
 --- Starting compilation
 --- model.gms(4) 3 Mb
 --- call csv2gdx Coordinates.csv useHeader=y id=teams index=1
-No errors, CSV2GDX time = 4ms
+No errors, CSV2GDX time = 5ms
 --- model.gms(5) 3 Mb
 --- GDXin=/Users/vadekh/Developer/GitHub/NFL-Reorganization/Coordinates.gdx
 --- model.gms(12) 3 Mb
 --- . distances.csv(1024) 3 Mb
---- model.gms(57) 3 Mb 3 Errors
-*** Error  10 in /Users/vadekh/Developer/GitHub/NFL-Reorganization/model.gms
-    ',' expected
-*** Error 767 in /Users/vadekh/Developer/GitHub/NFL-Reorganization/model.gms
-    Unexpected symbol will terminate the loop - symbol replaced by )
-*** Error 409 in /Users/vadekh/Developer/GitHub/NFL-Reorganization/model.gms
-    Unrecognizable item - skip to find a new statement
-      looking for a ';' or a key word to get started again
---- model.gms(59) 3 Mb 4 Errors
-*** Error 408 in /Users/vadekh/Developer/GitHub/NFL-Reorganization/model.gms
-    Too many ),] or }
---- model.gms(59) 3 Mb 4 Errors
+--- model.gms(68) 3 Mb 2 Errors
+*** Error 140 in /Users/vadekh/Developer/GitHub/NFL-Reorganization/model.gms
+    Unknown symbol
+*** Error  36 in /Users/vadekh/Developer/GitHub/NFL-Reorganization/model.gms
+    '=' or '..' or ':=' or '$=' operator expected
+    rest of statement ignored
+--- model.gms(68) 3 Mb 2 Errors
 *** Status: Compilation error(s)
---- Job model.gms Stop 12/13/20 11:06:57 elapsed 0:00:00.035
+--- Job model.gms Stop 12/13/20 13:08:24 elapsed 0:00:00.030

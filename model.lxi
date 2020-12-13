@@ -1,25 +1,45 @@
 B 3 C o m p i l a t i o n
-B 1088 Include File Summary
-B 1102 Equation Listing    SOLVE NflReorg Using MIP From line 1073
-D 1105 matchups
-D 1116 games
-D 1127 matchupReflex
-D 1138 balanceDiv
-D 1149 sameDiv
-D 1160 defObj
-B 1184 Column Listing      SOLVE NflReorg Using MIP From line 1073
-E 1187 x
-E 1212 totalDist
-B 1220 Model Statistics    SOLVE NflReorg Using MIP From line 1073
-B 1233 Solution Report     SOLVE NflReorg Using MIP From line 1073
-F 1270 matchups
-F 2299 games
-F 2336 matchupReflex
-F 10277 balanceDiv
-F 10290 sameDiv
-F 10553 defObj
-G 10555 x
-G 18754 totalDist
-B 18763 E x e c u t i o n
-I 18763 x
-I 18896 y
+B 1117 Include File Summary
+B 1131 Equation Listing    SOLVE NflReorg Using MIP From line 1073
+D 1134 matchups
+D 1145 games
+D 1156 matchupReflex
+D 1167 balanceDiv
+D 1178 sameDiv
+D 1189 defObj
+B 1213 Column Listing      SOLVE NflReorg Using MIP From line 1073
+E 1216 x
+E 1241 totalDist
+B 1249 Model Statistics    SOLVE NflReorg Using MIP From line 1073
+B 1262 Solution Report     SOLVE NflReorg Using MIP From line 1073
+F 1299 matchups
+F 2328 games
+F 2365 matchupReflex
+F 10306 balanceDiv
+F 10319 sameDiv
+F 10582 defObj
+G 10584 x
+G 18783 totalDist
+B 18792 E x e c u t i o n
+I 18792 x
+I 18925 y
+B 18966 Equation Listing    SOLVE NflReorg Using MIP From line 1113
+D 18969 matchups
+D 18980 games
+D 18991 matchupReflex
+D 19002 balanceDiv
+D 19013 sameDiv
+D 19024 defObj
+B 19048 Column Listing      SOLVE NflReorg Using MIP From line 1113
+E 19051 x
+E 19076 totalDist
+B 19084 Model Statistics    SOLVE NflReorg Using MIP From line 1113
+B 19097 Solution Report     SOLVE NflReorg Using MIP From line 1113
+F 19134 matchups
+F 20163 games
+F 20200 matchupReflex
+F 28141 balanceDiv
+F 28154 sameDiv
+F 28417 defObj
+G 28419 x
+G 36618 totalDist
