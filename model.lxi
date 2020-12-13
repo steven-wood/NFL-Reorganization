@@ -1,22 +1,28 @@
 B 3 C o m p i l a t i o n
-B 1076 Include File Summary
-B 1090 Equation Listing    SOLVE NflReorg Using MIP From line 1069
-D 1093 assignOne
-D 1104 balanceDivisions
-D 1115 twoTeamsPlaySet
-D 1126 defObj
-B 1134 Column Listing      SOLVE NflReorg Using MIP From line 1069
-E 1137 twoTeamsPlay
-E 1176 x
-E 1384 totalDist
-B 1392 Model Statistics    SOLVE NflReorg Using MIP From line 1069
-B 1405 Solution Report     SOLVE NflReorg Using MIP From line 1069
-F 1442 assignOne
-F 1479 balanceDivisions
-F 1492 twoTeamsPlaySet
-F 9691 defObj
-G 9693 twoTeamsPlay
-G 10722 x
-G 10985 totalDist
-B 10993 E x e c u t i o n
-I 10993 x
+B 1086 Include File Summary
+B 1100 Equation Listing    SOLVE NflReorg Using MIP From line 1079
+D 1103 assignOne
+D 1114 balanceDivisions
+D 1125 twoTeamsPlaySet
+D 1136 lim22Play
+D 1147 lim2Play
+D 1158 balancePlay
+D 1169 defObj
+B 1177 Column Listing      SOLVE NflReorg Using MIP From line 1079
+E 1180 twoTeamsPlay
+E 1229 x
+E 1437 totalDist
+B 1445 Model Statistics    SOLVE NflReorg Using MIP From line 1079
+B 1458 Solution Report     SOLVE NflReorg Using MIP From line 1079
+F 1495 assignOne
+F 1532 balanceDivisions
+F 1545 twoTeamsPlaySet
+F 9742 lim22Play
+F 9779 lim2Play
+F 9816 balancePlay
+F 10815 defObj
+G 10817 twoTeamsPlay
+G 11846 x
+G 12109 totalDist
+B 12117 E x e c u t i o n
+I 12117 twoTeamsPlay

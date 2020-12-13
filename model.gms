@@ -19,12 +19,13 @@ binary variable x(teams, div);
 free variable totalDist;
 scalar bigM /1000/;
 
-*twoTeamsPlay.lo(teams,teams2) = 0;
-
 equations
     assignOne(teams),
     balanceDivisions(div),
     twoTeamsPlaySet(teams, teams2, div),
+    lim22Play(teams),
+    lim2Play(teams),
+    balancePlay(teams,teams2),
     defObj
 ;
 
@@ -37,12 +38,21 @@ balanceDivisions(div)..
 twoTeamsPlaySet(teams, teams2, div)..
     x(teams, div) + x(teams2, div) - (bigM * twoTeamsPlay(teams,teams2)) =L= 2;
     
+lim22Play(teams)..
+    4 =E= sum(teams2, twoTeamsPlay(teams,teams2));
+    
+lim2Play(teams2)..
+    4 =E= sum(teams, twoTeamsPlay(teams,teams2));
+    
+balancePlay(teams,teams2)..
+    twoTeamsPlay(teams,teams2) =E= twoTeamsPlay(teams2,teams);
+    
 defObj..
-    totalDist =E= sum((teams, teams2), twoTeamsPlay(teams, teams2)*dist(teams,teams2));
+    totalDist =E= sum((teams, teams2), 2*twoTeamsPlay(teams, teams2)*dist(teams,teams2));
     
 model NflReorg /all/;
 
-solve NflReorg using mip max totalDist;
+solve NflReorg using mip min totalDist;
 
-options x:2:1:1;
-display x.l;
+options twoTeamsPlay:0:1:1;
+display twoTeamsPlay.l;
